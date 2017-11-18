@@ -8,7 +8,6 @@ import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.stereotype.Controller;
 
 import kcomp.chat.chatserver.entities.Lobby;
-import kcomp.chat.common.enums.MessageType;
 import kcomp.chat.common.messages.GeneralMessage;
 import kcomp.chat.common.messages.Message;
 
@@ -42,21 +41,6 @@ public class LobbyController {
 	public <T> void openRoom(Message<T> message, SimpMessageHeaderAccessor accessor) {
 		logger.info("Opening Room: " + message.getPayLoad());
 		lobby.openRoom(message.getFrom(), (String) message.getPayLoad(), accessor.getSessionId());
-	}
-
-	@MessageMapping("/room/{roomName}")
-	public void room(Message<String> message, SimpMessageHeaderAccessor accessor) {
-		logger.info("Single Room: " + message.getPayLoad());
-		String sessionId = accessor.getSessionId();
-		logger.info("Room sessionId: " + sessionId);
-		// lobby.sendMessageToRoom(message.getPayLoad(),
-		// sessionId);/topic/rooms/test
-		Message<String> msg = new Message<>(message.getFrom(), MessageType.ADD_ROOM, message.getPayLoad());
-
-		messagingTemplate.convertAndSend("/topic/rooms" + message.getFrom(), msg);
-		msg.setPayLoad(message.getPayLoad());
-		// messagingTemplate.convertAndSend("/topic/rooms", msg);
-
 	}
 
 }

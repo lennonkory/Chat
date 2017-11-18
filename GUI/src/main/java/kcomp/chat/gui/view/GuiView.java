@@ -112,7 +112,7 @@ public class GuiView extends JFrame implements View {
 	}
 
 	private void openRoomView(String name, Object[] clients) {
-		GuiRoom room = new GuiRoom(name, clients, props, clientService.createClient(name));
+		GuiRoom room = new GuiRoom(name, clients, props, clientService.createClient(client.getUserName()));
 		room.setVisible(true);
 	}
 
@@ -226,6 +226,7 @@ public class GuiView extends JFrame implements View {
 		client.setListener(listener);
 
 		client.send(props.getLoginUrl(), new Message<>(name, MessageType.LOG_IN, null));
+		this.setTitle("Chat Lobby: " + client.getUserName());
 	}
 
 }

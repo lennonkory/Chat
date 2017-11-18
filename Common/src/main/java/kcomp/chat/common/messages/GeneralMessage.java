@@ -1,13 +1,14 @@
 package kcomp.chat.common.messages;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class GeneralMessage {
 	private String from;
 	private String text;
 
-	public GeneralMessage() {
-	}
-
-	public GeneralMessage(String from, String text) {
+	@JsonCreator
+	public GeneralMessage(@JsonProperty("from") String from, @JsonProperty("text") String text) {
 		this.from = from;
 		this.text = text;
 	}

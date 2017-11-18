@@ -24,7 +24,9 @@ import kcomp.chat.common.enums.MessageType;
 import kcomp.chat.common.listeners.Listener;
 import kcomp.chat.common.listeners.RoomClientListener;
 import kcomp.chat.common.listeners.RoomListener;
+import kcomp.chat.common.messages.GeneralMessage;
 import kcomp.chat.common.messages.Message;
+import kcomp.chat.common.messages.UserMessage;
 
 public class GuiRoom extends JFrame {
 
@@ -62,8 +64,10 @@ public class GuiRoom extends JFrame {
 		listener.setListener(new RoomListener() {
 
 			@Override
-			public void roomMessage(String message) {
-				textArea.append(message + "\n");
+			public void roomMessage(UserMessage userMessage) {
+				String from = "<" + userMessage.getFrom() + ">: ";
+
+				textArea.append(from + userMessage.getMessage() + "\n");
 			}
 
 		});
@@ -128,8 +132,7 @@ public class GuiRoom extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				client.send(props.getRoom() + "/" + roomName,
-						new Message<String>(client.getUserName(), MessageType.ADD_ROOM, textField.getText()));
+				respondToInput();
 			}
 		});
 
@@ -165,7 +168,9 @@ public class GuiRoom extends JFrame {
 	private void respondToInput() {
 		String input = textField.getText();
 		if (input.length() > 0) {
-			textArea.append(input + "\n");
+			GeneralMessage message = new GeneralMessage(client.getUserName(), textField.getText());
+			client.send(props.getRoom() + "/" + roomName,
+					new Message<GeneralMessage>(roomName, MessageType.SEND_MESSAGE, message));
 		}
 		textField.setText("");
 	}

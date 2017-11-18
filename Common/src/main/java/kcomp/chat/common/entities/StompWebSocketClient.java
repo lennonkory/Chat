@@ -33,6 +33,8 @@ public class StompWebSocketClient implements Client {
 	@Override
 	public void connect(String url) {
 
+		logger.info("Connecting client to: " + url);
+
 		StandardWebSocketClient simpleWebSocketClient = new StandardWebSocketClient();
 		List<Transport> transports = new ArrayList<>(1);
 		transports.add(new WebSocketTransport(simpleWebSocketClient));
