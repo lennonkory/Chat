@@ -1,0 +1,12 @@
+socket:
+  url: ws://localhost:8080/lobby
+  topics:
+    - /topic/messages
+    - /topic/rooms
+  queues:
+    - /user/queue/lobby
+    - /user/queue/room
+  login-url: /app/lobby
+  add-room: /app/lobby/addRoom
+  open-room: /app/lobby/openRoom
+  room: /app/room
