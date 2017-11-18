@@ -66,6 +66,10 @@ public class Lobby {
 		Message<RoomMessage> msg = new Message<>(from, MessageType.OPEN_ROOM, roommsg);
 		messagingTemplate.convertAndSendToUser(sessionId, "/queue/lobby", msg, header.getMessageHeaders());
 
+		msg = new Message<>(roomName, MessageType.OPEN_ROOM, roommsg);
+
+		messagingTemplate.convertAndSend("/topic/rooms" + roomName, msg);
+
 	}
 
 	// Adds client to room if they are not already in the room

@@ -26,6 +26,7 @@ import kcomp.chat.common.listeners.RoomClientListener;
 import kcomp.chat.common.listeners.RoomListener;
 import kcomp.chat.common.messages.GeneralMessage;
 import kcomp.chat.common.messages.Message;
+import kcomp.chat.common.messages.RoomMessage;
 import kcomp.chat.common.messages.UserMessage;
 
 public class GuiRoom extends JFrame {
@@ -68,6 +69,14 @@ public class GuiRoom extends JFrame {
 				String from = "<" + userMessage.getFrom() + ">: ";
 
 				textArea.append(from + userMessage.getMessage() + "\n");
+			}
+
+			@Override
+			public void openRoom(RoomMessage message) {
+				listModel.clear();
+				for (Object object : message.getClients()) {
+					listModel.addElement(object);
+				}
 			}
 
 		});

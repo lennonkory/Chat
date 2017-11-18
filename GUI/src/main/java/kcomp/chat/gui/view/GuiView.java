@@ -188,9 +188,10 @@ public class GuiView extends JFrame implements View {
 			name = JOptionPane.showInputDialog(this, "Enter your username", "Login", JOptionPane.OK_CANCEL_OPTION);
 
 			if (name == null || StringUtils.isEmpty(name)) {
-				String result = JOptionPane.showInputDialog(this, "You must enter a username to continue", "Warning",
+				int result = JOptionPane.showConfirmDialog(this, "You must enter a username to continue", "Warning",
 						JOptionPane.OK_CANCEL_OPTION);
-				if (result == null) {
+
+				if (result == 0) {
 					System.exit(0);
 				}
 			}
