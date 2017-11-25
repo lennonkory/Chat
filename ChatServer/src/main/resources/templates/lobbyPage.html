@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="/css/main.css" rel="stylesheet"/>
+<script src="/webjars/jquery/jquery.min.js"></script>
+<script src="/webjars/sockjs-client/sockjs.min.js"></script>
+<script src="/webjars/stomp-websocket/stomp.min.js"></script>
+<script src="/js/clientConnect.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="js/lobby.js"></script>
+<title th:text="'Hello, ' + ${name} + '!'">Title</title>
+</head>
+<body>
+	<div id='lobby-area'>
+		<div id='room-table'>
+			<table id='lobby-table'>
+				<tr>
+					<th>Room</th>
+					<th>Creator</th>
+				</tr>
+				<tr>
+					<td>Baseball</td>
+					<td>Smith</td>
+				</tr>
+				<tr>
+					<td>Eve</td>
+					<td>Jackson</td>
+				</tr>
+			</table>
+		</div>
+		<div id='add-room-div'>
+			<button id='add-room-form' type="button">Add Room</button>
+		</div>
+	</div>
+	<div id='add-room' class='hidden'>
+		<label>Room Name</label>
+		<input id="room-name" name="roomname" placeholder="Name" type="text"/>
+		<button id='add-room-button' type="button">Ok</button>
+		<button id='add-room-button-cancel' type="button">Cancel</button>
+	</div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>WebChat</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/main.css" rel="stylesheet">
+<script src="/webjars/jquery/jquery.min.js"></script>
+<script src="/webjars/sockjs-client/sockjs.min.js"></script>
+<script src="/webjars/stomp-websocket/stomp.min.js"></script>
+<script src="/js/clientConnect.js"></script>
+<script src="/js/lobby.js"></script>
+</head>
+<body>
+	<p>
+		Get your greeting <a href="/greeting">here</a>
+	</p>
+	<p>
+		Lobby <a href="/lobbyPage">here</a>
+	</p>
+
+	<div id="main-content" class="container">
+		<div class="row">
+			<div class="col-md-12 space-bottom10">
+				<form class="form-inline">
+					<div class="form-group">
+						<label for="from">Name?</label> <input type="text" id="from"
+							class="form-control" placeholder="enter your name...">
+					</div>
+					<button id="connect" class="btn btn-default" type="submit">Connect</button>
+					<button id="disconnect" class="btn btn-default" type="submit"
+						disabled="disabled">Disconnect</button>
+				</form>
+			</div>
+		</div>
+
+	</div>
+		<div id='lobby-area'>
+		<div id='room-table'>
+			<table id='lobby-table'>
+				<tr>
+					<th>Room</th>
+					<th>Creator</th>
+				</tr>
+				<tr>
+					<td>Baseball</td>
+					<td>Smith</td>
+				</tr>
+				<tr>
+					<td>Eve</td>
+					<td>Jackson</td>
+				</tr>
+			</table>
+		</div>
+		<div id='add-room-div'>
+			<button id='add-room-form' type="button">Add Room</button>
+		</div>
+	</div>
+	<div id='add-room' class='hidden'>
+		<label>Room Name</label>
+		<input id="room-name" name="roomname" placeholder="Name" type="text"/>
+		<button id='add-room-button' type="button">Ok</button>
+		<button id='add-room-button-cancel' type="button">Cancel</button>
+	</div>
+</body>
+</html>

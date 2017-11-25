@@ -63,11 +63,14 @@ public class Lobby {
 		Room room = rooms.get(roomName);
 		addClientToRoom(room, from);
 		RoomMessage roommsg = new RoomMessage(roomName, from, "openRoom", room.getClients().toArray());
+
 		Message<RoomMessage> msg = new Message<>(from, MessageType.OPEN_ROOM, roommsg);
+
+		// Sends message to create a new GuiRoom
 		messagingTemplate.convertAndSendToUser(sessionId, "/queue/lobby", msg, header.getMessageHeaders());
 
 		msg = new Message<>(roomName, MessageType.OPEN_ROOM, roommsg);
-
+		// Tells all other clients in the same room that a new client has join
 		messagingTemplate.convertAndSend("/topic/rooms" + roomName, msg);
 
 	}
