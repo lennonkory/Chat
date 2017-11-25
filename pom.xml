@@ -33,5 +33,6 @@
 		<module>GUI</module>
 		<module>Common</module>
 		<module>ChatServer</module>
+		<module>WebGUI</module>
 	</modules>
 </project>
